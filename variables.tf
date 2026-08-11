@@ -72,3 +72,25 @@ variable "engine_version" {
   description = "PostgreSQL engine version"
   type        = string
 }
+variable "key_name" {
+  description = "EC2 Key Pair Name"
+
+  type = string
+}
+variable "database_url" {
+
+  description = "PostgreSQL database connection string"
+
+  type = string
+
+  sensitive = true
+
+}
+
+variable "ses_from_email" {
+
+  description = "Verified email address used by Amazon SES"
+
+  type = string
+
+}

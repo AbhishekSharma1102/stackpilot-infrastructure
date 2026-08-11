@@ -1,8 +1,9 @@
-resource "aws_iam_role" "ecs_task_role" {
+resource "aws_iam_role" "lambda_role" {
 
-  name = "${var.name_prefix}-ecs-task-role"
+  name = "${var.name_prefix}-lambda-role"
 
   assume_role_policy = jsonencode({
+
     Version = "2012-10-17"
 
     Statement = [
@@ -10,7 +11,7 @@ resource "aws_iam_role" "ecs_task_role" {
         Effect = "Allow"
 
         Principal = {
-          Service = "ecs-tasks.amazonaws.com"
+          Service = "lambda.amazonaws.com"
         }
 
         Action = "sts:AssumeRole"
@@ -21,7 +22,7 @@ resource "aws_iam_role" "ecs_task_role" {
   tags = merge(
     var.common_tags,
     {
-      Name = "${var.name_prefix}-ecs-task-role"
+      Name = "${var.name_prefix}-lambda-role"
     }
   )
 }
